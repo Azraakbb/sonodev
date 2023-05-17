@@ -49,9 +49,9 @@ def main():
         satici_adi = input("Satıcı adı: ")
         satilan_urun = input("Satılan ürün(tv, bilgisayar, beyaz eşya, diğer):")
         satis_tutari = float(input("Satış tutarı: "))
-        if magaza_adi not in sozluk:    #magaza adı sözlükte var mı kontrol eder
-            sozluk[magaza_adi] = Magaza(magaza_adi, satici_adi, satilan_urun)
-        sozluk[magaza_adi].satis_ekle(satis_tutari)     #satis_ekle fonksiyonunu çağırır.
+        if magaza_adi not in sozluk:
+            sozluk[magaza_adi] = Magaza(magaza_adi, satilan_urun,satici_adi)
+        sozluk[magaza_adi].satis_ekle(satici_adi, satis_tutari)
         devam = input("Devam etmek istiyor musunuz? (e/h): ")
         if devam == "h":        #döngüden çıkmamızı sağlar
             break
