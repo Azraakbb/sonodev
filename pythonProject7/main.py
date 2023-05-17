@@ -23,19 +23,18 @@ class Magaza:
     def set_satilan_urun(self, satilan_urun):
         self.__satilan_urun = satilan_urun
 
-    def satis_ekle(self, satis):
-        self.__satislar.append(satis)
+    def satis_ekle(self, satici_adi, satis_tutari):
+        if satici_adi in self.__satislar:
+             self.__satislar[satici_adi] += satis_tutari
+        else:
+            self.__satislar[satici_adi] = satis_tutari
 
     def magaza_satis_tutar(self):
         toplam_satis = 0
         satici_toplam_satislari = {}    #liste oluşturulur
         for satis in self.__satislar:       #satislar listesindeki satislari taoplam_satisa ekler
             toplam_satis += satis
-            if self.__satici_adi in satici_toplam_satislari:    #satici adi sözlükte var mı kontrol eder
-                satici_toplam_satislari[self.__satici_adi] += satis     #varsa saticinin satışına bunu ekler
-            else:
-                satici_toplam_satislari[self.__satici_adi] = satis
-        return toplam_satis, satici_toplam_satislari
+        return toplam_satis
     def __str__(self):      #toplam satışları ekrana yazdırmamızı sağlar
         toplam_satis,satici_toplam_satislari =self.magaza_satis_tutar()
         s = f"Mağaza adı: {self.__magaza_adi}\ntoplam satış tutarı: {toplam_satis}\n"
