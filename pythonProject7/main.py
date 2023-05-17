@@ -33,18 +33,20 @@ class Magaza:
         toplam_satis = sum(self.__satislar.values())
         return toplam_satis, self.__satislar
 
-    def __str__(self):      #toplam satışları ekrana yazdırmamızı sağlar
-        toplam_satis,satici_toplam_satislari =self.magaza_satis_tutar()
-        s = f"Mağaza adı: {self.__magaza_adi}\ntoplam satış tutarı: {toplam_satis}\n"
-        s += "{} satıcısının satışı: {}".format(self.__satici_adi,satici_toplam_satislari[self.__satici_adi])
+    def __str__(self):
+        toplam_satis, satici_toplam_satislari = self.magaza_satis_tutar()
+        s = f"Mağaza adı: {self.__magaza_adi}\nToplam satış tutarı: {toplam_satis}\n"
+        for satici, satis in satici_toplam_satislari.items():
+            s += f"{satici} satıcısının satışı: {satis}\n"
         return s
+
 
 def main():
     sozluk ={}
     while True:
         magaza_adi = input("Mağaza adı: ")
+        satilan_urun = input("Satılan ürün (tv, bilgisayar, beyaz eşya, diğer): ")
         satici_adi = input("Satıcı adı: ")
-        satilan_urun = input("Satılan ürün(tv, bilgisayar, beyaz eşya, diğer):")
         satis_tutari = float(input("Satış tutarı: "))
         if magaza_adi not in sozluk:
             sozluk[magaza_adi] = Magaza(magaza_adi, satilan_urun,satici_adi)
