@@ -30,11 +30,9 @@ class Magaza:
             self.__satislar[satici_adi] = satis_tutari
 
     def magaza_satis_tutar(self):
-        toplam_satis = 0
-        satici_toplam_satislari = {}    #liste oluşturulur
-        for satis in self.__satislar:       #satislar listesindeki satislari taoplam_satisa ekler
-            toplam_satis += satis
-        return toplam_satis
+        toplam_satis = sum(self.__satislar.values())
+        return toplam_satis, self.__satislar
+
     def __str__(self):      #toplam satışları ekrana yazdırmamızı sağlar
         toplam_satis,satici_toplam_satislari =self.magaza_satis_tutar()
         s = f"Mağaza adı: {self.__magaza_adi}\ntoplam satış tutarı: {toplam_satis}\n"
